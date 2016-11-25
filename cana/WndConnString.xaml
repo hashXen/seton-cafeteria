@@ -1,0 +1,19 @@
+﻿<Window x:Class="Cana.WndConnString"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Cana"
+        mc:Ignorable="d"
+        Loaded="Window_Loaded"
+        
+        Title="Connection String Setup" Height="148" Width="512" FontFamily="Segoe Print" ResizeMode="NoResize" SizeToContent="WidthAndHeight">
+
+    <Grid Margin="0,0,0,-5" Background="Teal">
+        <Label x:Name="lblInstruction" Content="Enter the SQL connection string or path-to-file here:" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="30,28,121,70" FontSize="15" FontFamily="Arial" Width="355"/>
+        <TextBox x:Name="txtConnString" HorizontalAlignment="Center" Height="37" TextWrapping="Wrap" Text="" VerticalAlignment="Bottom" Width="394" Margin="10,0,102,23" FontSize="11"/>
+        <Button x:Name="btnSubmit" Content="Submit" HorizontalAlignment="Left" Margin="423,23,0,0" VerticalAlignment="Top" Width="73" Height="78" FontFamily="Arial" FontSize="19" Click="btnSubmit_Click"/>
+
+
+    </Grid>
+</Window>

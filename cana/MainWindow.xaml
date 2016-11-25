@@ -1,0 +1,120 @@
+﻿<Window x:Class="Cana.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Cana"
+        mc:Ignorable="d"
+        Title="Cana" Height="600" Width="1024"
+        WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Icon="icon.ico">
+    <Grid Background="LightBlue">
+        <StatusBar Name="sbar" 
+           VerticalAlignment="Bottom" Background="Beige" >
+
+            <StatusBarItem>
+                <TextBlock Name="lowerLeftTextBlock"></TextBlock>
+            </StatusBarItem>
+            <StatusBarItem HorizontalAlignment="Right">
+            </StatusBarItem>
+        </StatusBar>
+        <DockPanel>
+            <Menu DockPanel.Dock="Top">
+                <MenuItem Header="_File">
+                    <MenuItem Header="Export">
+                        <MenuItem Header="Customer information">
+                            <MenuItem Header="Single Customer with Transactions" />
+                            <MenuItem Header="All Customers"/>
+                        </MenuItem>
+                        <MenuItem Header="Transactions">
+                            <MenuItem Header="All"/>
+                            <MenuItem Header="This Month"/>
+                            <MenuItem Header="Last Month"/>
+                            <MenuItem Header="This School Year"/>
+                        </MenuItem>
+                    </MenuItem>
+                    <Separator/>
+                    <MenuItem Header="Exit"/>
+                </MenuItem>
+                <MenuItem Header="_Edit">
+                    <MenuItem Header="Undo Payment" Click="UndoPayment_Click"/>
+                    <MenuItem Header="Redo Payment" Click="RedoPayment_Click"/>
+                    <Separator />
+                    <MenuItem Header="Cut"/>
+                    <MenuItem Header="Copy"/>
+                    <MenuItem Header="Paste"/>
+                    <Separator />
+                    <MenuItem Header="Connection String"/>
+                </MenuItem>
+                <MenuItem Header="Tools">
+
+                </MenuItem>
+                <MenuItem Header="Help">
+                    <MenuItem Header="User Manual"/>
+                    <MenuItem Header="Developer Manual"/>
+                    <Separator />
+                    <MenuItem Header="About"/>
+
+                </MenuItem>
+            </Menu>
+            <StackPanel>
+                <GroupBox x:Name="groupBox" Header="Fast Lookup" Height="194" VerticalAlignment="Top" Width="635">
+                    <StackPanel Margin="0,0,-2,0">
+                        <TextBox x:Name="textBoxLookup" Height="33" TextWrapping="Wrap" VerticalAlignment="Top" Width="588" Margin="0,24,0,0" FontSize="24" TextChanged="textBoxLookup_TextChanged"/>
+                        <TextBlock TextWrapping="Wrap" Height="27" HorizontalAlignment="Center">
+                        <Hyperlink x:Name="linkResult1" Click="linkResult1_Click">
+                        </Hyperlink>
+                        </TextBlock>
+                        <TextBlock TextWrapping="Wrap" Height="27" HorizontalAlignment="Center">
+                        <Hyperlink x:Name="linkResult2" Click="linkResult2_Click"></Hyperlink>
+                        </TextBlock>
+                        <TextBlock TextWrapping="Wrap" Height="27" HorizontalAlignment="Center">
+                        <Hyperlink x:Name="linkResult3" Click="linkResult3_Click"></Hyperlink>
+                        </TextBlock>
+                        <TextBlock TextWrapping="Wrap" Height="27" HorizontalAlignment="Center">
+                        <Hyperlink x:Name="linkResult4" Click="linkResult4_Click"></Hyperlink>
+                        </TextBlock>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox x:Name="groupBoxSummary" Header="Summary" Height="325">
+                    <DockPanel>
+                        <StackPanel>
+                            <Calendar Height="303" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+                        </StackPanel>
+                    </DockPanel>
+                </GroupBox>
+
+            </StackPanel>
+            <StackPanel Width="372" HorizontalAlignment="Right">
+                <GroupBox x:Name="groupBoxEdit" Header="Current Customer" Height="271" Width="371" HorizontalAlignment="Right">
+                    <Grid>
+                        <TextBox x:Name="textBoxFirstName" Text="{Binding Path=FirstName, ElementName=currentCust}" HorizontalAlignment="Right" Height="19" Margin="0,20,20,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="234" IsEnabled="False"/>
+                        <TextBox x:Name="textBoxLastName" Text="{Binding Path=LastName, ElementName=currentCust}" HorizontalAlignment="Right" Height="19" Margin="0,95,20,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="234" IsEnabled="False"/>
+                        <TextBox x:Name="textBoxBalance" Text="{Binding Path=Balance, ElementName=currentCust}" HorizontalAlignment="Right" Height="19" Margin="0,132,20,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="234" IsEnabled="False"/>
+                        <TextBox x:Name="textBoxCardUid" Text="{Binding Path=CardUid, ElementName=currentCust}" HorizontalAlignment="Right" Height="19" Margin="0,168,20,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="234" IsEnabled="False"/>
+                        <TextBlock x:Name="textBlockFirstName" HorizontalAlignment="Left" Margin="30,21,0,0" Text="First Name:" VerticalAlignment="Top" Height="13"/>
+                        <TextBlock x:Name="textBlockLastName" HorizontalAlignment="Left" Margin="30,95,0,0" Text="Last Name:" VerticalAlignment="Top" Height="13" />
+                        <TextBlock x:Name="textBlockBalance" HorizontalAlignment="Left" Margin="30,132,0,0" Text="Balance:" VerticalAlignment="Top" Height="13" />
+                        <TextBlock x:Name="textBlockCardUid" HorizontalAlignment="Left" Margin="30,168,0,0" Text="Card UID:" VerticalAlignment="Top" Height="13" />
+                        <Button x:Name="btnEnableEditing" Content="Enable Editing" HorizontalAlignment="Left" Margin="105,203,0,0" VerticalAlignment="Top" Width="89" RenderTransformOrigin="0.2,0.25" Height="30" Click="btnEnableEditing_Click" IsEnabled="False"/>
+                        <Button x:Name="btnEditSubmit" Content="Submit" HorizontalAlignment="Left" Margin="249,203,0,0" VerticalAlignment="Top" Width="90" Height="30" IsEnabled="False" Click="btnEditSubmit_Click"/>
+                        <TextBox x:Name="textBoxNickName" Text="{Binding LastName, ElementName=currentCust}" HorizontalAlignment="Right" Height="19" Margin="0,58,20,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="234" IsEnabled="False"/>
+                        <TextBlock x:Name="textBlockNickName" HorizontalAlignment="Left" Margin="30,58,0,0" Text="Nick Name:" VerticalAlignment="Top" Height="13" />
+                    </Grid>
+                </GroupBox>
+                <GroupBox x:Name="groupBoxOrder" Header="Ordering" Height="248" Width="371" HorizontalAlignment="Right">
+                    <Grid>
+                        <Border Margin="125,110,10,110" Background="Black"/>
+                        <TextBox x:Name="textBoxOrderAmount" HorizontalAlignment="Right" Height="49" Margin="0,56,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="114" FontSize="36" TextAlignment="Right" TextChanged="textBoxOrderAmount_TextChanged" MaxLength="5"/>
+                        <TextBlock x:Name="textBlockBalanceBefore" Text="$0.00" HorizontalAlignment="Left" TextAlignment="Right" Margin="125,10,0,0" VerticalAlignment="Top" Width="224" Height="41" FontSize="36"/>
+                        <TextBlock x:Name="textBlockBalanceAfter" Text="$0.00" TextAlignment="Right" HorizontalAlignment="Left" Margin="125,110,0,0" VerticalAlignment="Top" Width="224" Height="41" FontSize="36" />
+                        <Button x:Name="btnConfirm" Content="Confirm Order" HorizontalAlignment="Left" Margin="10,156,0,0" VerticalAlignment="Top" Width="339" RenderTransformOrigin="0.2,0.25" Height="60" Click="btnConfirm_Click" FontSize="24"/>
+                        <TextBlock x:Name="textBlockBefore" HorizontalAlignment="Left" Margin="10,16,0,0" TextWrapping="Wrap" Text="Before:" VerticalAlignment="Top" Height="35" Width="110" FontSize="20"/>
+                        <TextBlock x:Name="textBlockAfter" HorizontalAlignment="Left" Margin="10,116,0,0" TextWrapping="Wrap" Text="After:" VerticalAlignment="Top" Height="35" Width="110" FontSize="20"/>
+                        <TextBlock x:Name="textBlockAmount" HorizontalAlignment="Left" Margin="10,65,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="35" Width="220" FontSize="20"><Run Text="Amount"/><Run Text=":"/><Run Text="                       "/><Run Text=" -"/></TextBlock>
+                    </Grid>
+                </GroupBox>
+            </StackPanel>
+        </DockPanel>
+    </Grid>
+
+</Window>
